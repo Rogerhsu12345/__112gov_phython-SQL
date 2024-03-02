@@ -1,0 +1,1 @@
+SELECT NOW() AS 現在UTC時間
