@@ -1,2 +1,1 @@
-SELECT *
-FROM city;
+CREATE DATABASE dvdrental
