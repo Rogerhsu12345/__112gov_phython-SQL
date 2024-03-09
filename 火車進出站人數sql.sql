@@ -72,8 +72,39 @@ FROM gate_count LEFT JOIN stations ON 站點編號=編號
 ORDER BY 進站人數 DESC
 LIMIT 100;
 
+/* */
+SELECT 日期,進站人數,出站人數,名稱,地名,地址,YOUBIKE
+FROM gate_count LEFT JOIN stations ON 站點編號=編號
+ORDER BY 進站人數 DESC
+LIMIT 100;
+
+/*全省各站點2022年進站總人數*/
+SELECT 名稱, 
+SUM(進站人數) AS 該站總人數 
+FROM gate_count LEFT JOIN stations ON 站點編號=編號
+GROUP BY 名稱
+ORDER BY 該站總人數 DESC;
+
+/*全省各站點2022年進站總人數大於5佰萬人的站點 */
+SELECT 名稱, 
+SUM(進站人數) AS 該站總人數 
+FROM gate_count LEFT JOIN stations ON 站點編號=編號
+GROUP BY 名稱
+HAVING SUM(進站人數)> 50000000;
+
+/* 基隆火車站2020年,每月份進站人數 */
 
 
+/* */
+SELECT first_name || ' ' ||last_name AS full_name, 
+/* || ' ' ||表示字串相連*/
+SUM(amount) AS 總合 
+FROM payment LEFT JOIN customer USING (customer_id)
+/*USING 表示兩不同表格,但均具有相同customer_id資料join在一起 */
+GROUP BY full_name
+HAVING SUM(amount) >= 200
+/*GROUP BY 與 HAVING用在一起,HAVING後面一樣用具合函數 */
+ORDER BY 總合 DESC;
 
 
 
