@@ -36,6 +36,24 @@ CREATE TABLE IF NOT EXISTS gate_count(
 	ON UPDATE CASCADE
 );
 
+SELECT *
+FROM gate_count LEFT JOIN stations ON 站點編號=編號;
+
+
+SELECT 日期,進站人數,出站人數,名稱,地名,地址,YOUBIKE
+FROM gate_count LEFT JOIN stations ON 站點編號=編號;
+
+
+/*基隆市有哪些火車站*/
+SELECT DISTINCT 名稱
+FROM gate_count LEFT JOIN stations ON 站點編號=編號
+WHERE 地址 LIKE '基隆市%';
+
+/*基隆火車站2022年3月1日資料*/
+
+
+
+
 
 
 
