@@ -15,5 +15,24 @@ FROM payment
 GROUP BY customer_id
 ORDER BY 總合 DESC;
 
+/* */
+SELECT first_name || ' ' ||last_name AS full_name, 
+SUM(amount) AS 總合 
+FROM payment LEFT JOIN customer ON payment.customer_id=customer.customer_id
+GROUP BY full_name
+ORDER BY 總合 DESC;
+
+/* */
+SELECT first_name || ' ' ||last_name AS full_name, 
+/* || ' ' ||表示字串相連*/
+SUM(amount) AS 總合 
+FROM payment LEFT JOIN customer USING (customer_id)
+/*USING 表示兩不同表格,但均具有相同customer_id資料join在一起 */
+GROUP BY full_name
+HAVING SUM(amount) >= 200
+/*GROUP BY 與 HAVING用在一起,HAVING後面一樣用具合函數 */
+ORDER BY 總合 DESC;
+
+
 
 
